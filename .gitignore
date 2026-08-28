@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment & Symlinks
+mlx_env
+venv/
+env/
+ENV/
+
+# Model Weights & Raw Dumps (>50MB)
+gemma-4-E4B-it-4bit/
+adapters_backup/
+*.jsonl
+Acorns Dictatorship - *.json
+!data/*.jsonl
+
+# Intermediate LoRA step checkpoints (keep final adapters.safetensors and config)
+adapters/[0-9]*_adapters.safetensors
+
+# OS & Logs
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.log

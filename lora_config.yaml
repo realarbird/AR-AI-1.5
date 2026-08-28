@@ -1,0 +1,19 @@
+model: "./gemma-4-E4B-it-4bit"
+train: true
+data: "./data"
+mask_prompt: true
+num_layers: 20
+batch_size: 2
+grad_accumulation_steps: 2
+grad_checkpoint: true
+max_seq_length: 512
+clear_cache_threshold: 0.5
+iters: 200
+learning_rate: 1.5e-5
+adapter_path: "./adapters"
+lora_parameters:
+  rank: 8
+  alpha: 16
+  dropout: 0.0
+  scale: 5.0
+  keys: ["self_attn.q_proj", "self_attn.v_proj", "self_attn.k_proj", "self_attn.o_proj"]
