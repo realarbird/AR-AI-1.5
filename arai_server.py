@@ -238,9 +238,11 @@ class OpenAIApiHandler(BaseHTTPRequestHandler):
                 if a_m and a_m.group(1).lower() not in blacklist:
                     return a_m.group(1).lower(), get_friendly_sender_name(a_m.group(1))
 
-                b_m = re.search(r'\[([a-zA-Z0-9_\.\-]+)\]:', raw_str)
-                if b_m and b_m.group(1).lower() not in blacklist:
-                    return b_m.group(1).lower(), get_friendly_sender_name(b_m.group(1))
+                b_m = re.search(r'\[([^\]]+)\]:', raw_str)
+                if b_m:
+                    matched_sender = b_m.group(1).strip()
+                    if matched_sender.lower() not in blacklist:
+                        return matched_sender.lower(), get_friendly_sender_name(matched_sender)
 
                 # 3. Check live OpenClaw session files on disk
                 if raw_str:
@@ -385,7 +387,7 @@ class OpenAIApiHandler(BaseHTTPRequestHandler):
                         )
 
                 # If the current speaker is NOT Ryan/Cactus, scrub any hallucinated "nah ryan im not roleplaying" phrase
-                if sender_key not in {"1176709426539929650", "cactusmaximus", "cactusmaximus1", "cactus", "ryan"} and "ryan" not in friendly_sender.lower():
+                if not is_ryan:
                     completion_text = re.sub(r'nah ryan im not (?:roleplaying|doing).*?(?:stick to femboy bot[,\.]?)?', '', completion_text, flags=re.IGNORECASE)
                     completion_text = re.sub(r'stick to femboy bot[,\.]?', '', completion_text, flags=re.IGNORECASE)
                     completion_text = re.sub(r'\s+', ' ', completion_text).strip()

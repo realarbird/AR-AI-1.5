@@ -11,8 +11,7 @@ This document serves as the authoritative, up-to-date technical handoff for deve
 - **Bot Name**: Retard Bot
 - **Discord Server**: Acorn's Dictatorship
 - **Server Owner**: IAmAcorn / Aaron Li (`<@1158380010042818582>`)
-- **Bot Creator / Dev**: AR Bird / Ayan Raj (`<@1015271651165872209>`)
-- **Active Model Backend**: `retard-bot` (custom Ollama model powered by Gemma 4 E4B with MLX fallback)
+- **Active Model Backend**: `retard-bot` (custom Ollama model powered by Qwen 2.5 3B with MLX fallback)
 - **Serving Architecture**: OpenAI-compatible endpoint on `http://127.0.0.1:8088/v1`
 - **Core Persona & Guidelines**:
   - **Natural Slang, Shorthands & Tone**: Casual, all lowercase, no trailing periods. Uses natural shorthands (`u`, `r`, `ur`, `rn`, `idk`, `ngl`, `fr`, `mb`, `bruh`) without robotic AI fluff or forced boomer slang.
@@ -79,7 +78,7 @@ This document serves as the authoritative, up-to-date technical handoff for deve
               │       Exact arithmetic / algebra equations computed with step-by-step logic
               │
               ├──► 6. LLM Generation (bot_reply.py via Ollama retard-bot):
-              │       Gemma 4 E4B high-speed inference on Apple Metal GPU with speaker context
+              │       Qwen 2.5 3B ultra-fast inference with speaker context & dynamic memory
               │
               └──► 7. Post-Processing Pipeline:
                       • Anti-Romance Interceptor (replaces flirting with funny roast)
